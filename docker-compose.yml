@@ -1,0 +1,26 @@
+version: '3'
+
+networks:
+  broker-bridge:
+    driver: bridge
+
+services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    ports:
+      - "3306:3306" # HOST:CONTAINER
+    environment: # 컨테이너 안의 환경변수 설정
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=shoppongMall
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+  mariadb:
+    image: mariadb
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MYSQL_DATABASE: shoppongMall
